@@ -7,7 +7,6 @@ import io.restassured.response.Response;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
 import org.json.JSONObject;
-
 import java.io.IOException;
 
 import static net.serenitybdd.rest.SerenityRest.given;
@@ -21,7 +20,7 @@ public class UserAPI extends BasePage {
     @Step
     public User getCurrentUser(){
         Response response = given()
-                .auth().basic(GetTestProperties.getValue("basicLoginUser"), GetTestProperties.getValue("basicLoginPassword"))
+                .auth().basic(GetTestProperties.getValue("basicLoginUser"),GetTestProperties.getValue("basicLoginPassword"))
                 .header("Content-Type","application/json")
                 .header("Jwtauthorization","Bearer "+Serenity.sessionVariableCalled("GetUserToken"))
                 .when().log().all().get("/api/user");
@@ -38,7 +37,7 @@ public class UserAPI extends BasePage {
     @Step
     public void updateUser(){
         Response response = given()
-                .auth().basic(GetTestProperties.getValue("basicLoginUser"), GetTestProperties.getValue("basicLoginPassword"))
+                .auth().basic(GetTestProperties.getValue("basicLoginUser"),GetTestProperties.getValue("basicLoginPassword"))
                 .header("Content-Type","application/json")
                 .header("Jwtauthorization",Serenity.sessionVariableCalled("JWT_TOKEN"))
                 .when().log().all().get("/api/user");

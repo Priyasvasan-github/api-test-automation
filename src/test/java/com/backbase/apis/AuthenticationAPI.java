@@ -6,7 +6,6 @@ import io.restassured.response.Response;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
 import org.json.JSONObject;
-
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.time.LocalDateTime;
@@ -22,7 +21,7 @@ public class AuthenticationAPI extends BasePage {
     @Step
     public void login(){
         Response response = given()
-                .auth().basic(GetTestProperties.getValue("basicLoginUser"), GetTestProperties.getValue("basicLoginPassword"))
+                .auth().basic(GetTestProperties.getValue("basicLoginUser"),GetTestProperties.getValue("basicLoginPassword"))
                 .header("Content-Type","application/json")
                 .when().log().all().body(userLoginMessage(Serenity.sessionVariableCalled("email").toString(),Serenity.sessionVariableCalled("password").toString())).post("/api/users/login");
         JSONObject rawResponse = new JSONObject(response.getBody().asString());
@@ -47,7 +46,7 @@ public class AuthenticationAPI extends BasePage {
     @Step
     public void registerAUser(String email,String password,String username){
         Response response = given()
-                .auth().basic(GetTestProperties.getValue("basicLoginUser"), GetTestProperties.getValue("basicLoginPassword"))
+                .auth().basic(GetTestProperties.getValue("basicLoginUser"),GetTestProperties.getValue("basicLoginPassword"))
                 .header("Content-Type","application/json")
                 .when().log().all().body(registerMessage(email,password,username)).post("/api/users/");
         JSONObject rawResponse = new JSONObject(response.getBody().asString());

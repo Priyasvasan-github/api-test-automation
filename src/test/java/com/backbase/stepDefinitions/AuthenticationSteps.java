@@ -1,9 +1,9 @@
 package com.backbase.stepDefinitions;
 
 
-import com.backbase.apis.*;
 import com.json.model.profile.Profile__1;
 import com.json.model.user.User__1;
+import com.backbase.apis.*;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -23,7 +23,8 @@ public class AuthenticationSteps {
     @Steps
     UserAPI userAPI;
 
-
+    @Steps
+    ProfileAPI profileAPI;
 
     BasePage basePage = new BasePage();
 
@@ -36,6 +37,17 @@ public class AuthenticationSteps {
         Serenity.setSessionVariable("email").to(accounts.getCredentials().getEmail());
         Serenity.setSessionVariable("username").to(accounts.getCredentials().getUsername());
         Serenity.setSessionVariable("userType").to(userType);
+    }
+
+    @Given("^A (.*) user have a token to access API$")
+    public void accessAPI(String userType) {
+        RestAssured.baseURI = basePage.getBaseURL();
+        UserAccount accounts = AccountDictionary.getInstance().get(userType);
+        Serenity.setSessionVariable("password").to(accounts.getCredentials().getPassword());
+        Serenity.setSessionVariable("email").to(accounts.getCredentials().getEmail());
+        Serenity.setSessionVariable("userType").to(userType);
+        Serenity.setSessionVariable("username").to(accounts.getCredentials().getUsername());
+        authenticationAPI.login();
     }
 
     @When("^He login using (.*) credentials$")
@@ -80,7 +92,28 @@ public class AuthenticationSteps {
         assertThat(userDetails.getEmail()).isEqualToIgnoringCase(accounts.getCredentials().getEmail());
     }
 
+    @Then("^He (.*) following user with username (.*)$")
+    public void profileVerification(String status, String username) {
+        Profile__1 profileDetails = profileAPI.getProfile(username.toLowerCase()).getProfile();
+        assertThat(Serenity.sessionVariableCalled("GetProfileResponseCode").toString()).isEqualToIgnoringCase("200");
+        if(status.equalsIgnoreCase("is")){
+            assertThat(profileDetails.getFollowing()).isTrue();
+        }else{
+            assertThat(profileDetails.getFollowing()).isFalse();
+        }
+    }
 
+    @Then("^He decides and acts accordingly to (.*) user, (.*)$")
+    public void followProfile(String status, String username) {
+        if(status.equalsIgnoreCase("follow")){
+            profileAPI.followProfile(username.toLowerCase());
+            assertThat(Serenity.sessionVariableCalled("FollowProfileResponseCode").toString()).isEqualToIgnoringCase("200");
+        }else{
+            profileAPI.unFollowProfile(username.toLowerCase());
+            assertThat(Serenity.sessionVariableCalled("UnFollowProfileResponseCode").toString()).isEqualToIgnoringCase("200");
+        }
+
+    }
 
 
 }
