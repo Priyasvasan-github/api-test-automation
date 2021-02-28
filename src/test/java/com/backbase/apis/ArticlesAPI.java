@@ -17,10 +17,10 @@ public class ArticlesAPI extends BasePage {
 
     /**
      * Create article using below parameters
-     * @param title
-     * @param description
-     * @param body
-     * @param tags
+     * @param title The title of the Article
+     * @param description The description of the Article
+     * @param body The body of the Article
+     * @param tags The tags of the Article
      * @return Article
      */
     @Step
@@ -42,10 +42,10 @@ public class ArticlesAPI extends BasePage {
 
     /**
      * Update Article using the slug
-     * @param parameter
-     * @param value
-     * @param slug
-     * @return
+     * @param parameter The parameter to update
+     * @param value the value of the parameter
+     * @param slug The slug of the article
+     * @return Article
      */
     @Step
     public Article updateArticle(String parameter,String value,String slug){
@@ -66,7 +66,7 @@ public class ArticlesAPI extends BasePage {
 
     /**
      * Delete article using slug
-     * @param slug
+     * @param slug The slug of the article
      */
     @Step
     public void deleteArticle(String slug){
@@ -81,8 +81,8 @@ public class ArticlesAPI extends BasePage {
 
     /**
      * Retrieve an article using the slug
-     * @param slug
-     * @return
+     * @param slug The slug of the article
+     * @return Article
      */
     @Step
     public Article getArticleWithSlug(String slug){
@@ -104,8 +104,8 @@ public class ArticlesAPI extends BasePage {
 
     /**
      * Contract validation of a Article response
-     * @param response
-     * @return
+     * @param response the API response
+     * @return Validation
      */
     private Article getArticle(String response){
         try {
@@ -118,11 +118,11 @@ public class ArticlesAPI extends BasePage {
 
     /**
      * Request body to create a Article
-     * @param title
-     * @param description
-     * @param body
-     * @param tags
-     * @return
+     * @param title The title of the Article
+     * @param description The description of the Article
+     * @param body The body of the Article
+     * @param tags The tags of the Article
+     * @return Article
      */
     public String createArticleMsg(String title, String description,String body,String tags){
         JSONObject json = new JSONObject();

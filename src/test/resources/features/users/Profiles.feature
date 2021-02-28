@@ -1,22 +1,23 @@
 Feature: Verify user can follow and un-follow a profile
 
-  @Regression @Automation @PROFILE-001
+  @smoke
   Scenario: Verify user can follow an existing profile
     Given A registered user have a token to access API
-    And He is not following user with username followMeToTest
-    When He decides and acts accordingly to follow user, followMeToTest
-    Then He is following user with username followMeToTest
+    And the user is not following user with username followMeToTest
+    When the user decides to follow user with username followMeToTest
+    Then the user is following user with username followMeToTest
 
-  @Regression @Automation @PROFILE-002
+  @smoke
   Scenario: Verify user can un-follow an existing profile
     Given A registered user have a token to access API
-    And He is following user with username followMeToTest
-    When He decides and acts accordingly to un-follow user, followMeToTest
-    Then He is not following user with username followMeToTest
+    And the user is following user with username followMeToTest
+    When the user decides to un-follow user with username followMeToTest
+    Then the user is not following user with username followMeToTest
 
-  @Regression @PROFILE-003 @wip
+  @wip
   Scenario: Verify user can't follow his own profile
     Given A registered user have a token to access API
     When He attempts to follow his own profile
     Then He should be returned with an error
 
+#end

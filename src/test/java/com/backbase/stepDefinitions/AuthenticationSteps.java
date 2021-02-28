@@ -50,18 +50,18 @@ public class AuthenticationSteps {
         authenticationAPI.login();
     }
 
-    @When("^He login using (.*) credentials$")
+    @When("^the user login using (.*) credentials$")
     public void login(String loginType) {
         authenticationAPI.login();
     }
 
-    @When("^(.*) user attempts to register$")
+    @When("^the (.*) user attempts to register$")
     public void register(String userType) {
         UserAccount accounts = AccountDictionary.getInstance().get(userType);
         authenticationAPI.registerAUser(accounts.getCredentials().getEmail(),accounts.getCredentials().getPassword(),accounts.getCredentials().getUsername());
     }
 
-    @Then("^User login (.*) successful$")
+    @Then("^the user login (.*) successful$")
     public void verifyLogin(String status) {
         if("is".equalsIgnoreCase(status)){
             assertThat(Serenity.sessionVariableCalled("GetLoginStatusCode").toString()).isEqualTo("200");
@@ -73,7 +73,7 @@ public class AuthenticationSteps {
 
     }
 
-    @Then("^User registration (.*) successful$")
+    @Then("^the user registration (.*) successful$")
     public void verifyRegistration(String status) {
         if("is".equalsIgnoreCase(status)){
             assertThat(Serenity.sessionVariableCalled("GetRegistrationStatusCode").toString()).isEqualTo("200");
@@ -84,7 +84,7 @@ public class AuthenticationSteps {
         }
     }
 
-    @Then("^(.*) user details are displayed correctly$")
+    @Then("^the (.*) user details are displayed correctly$")
     public void userDetailVerification(String userType) {
         UserAccount accounts = AccountDictionary.getInstance().get(userType);
         User__1 userDetails = userAPI.getCurrentUser().getUser();
@@ -92,7 +92,7 @@ public class AuthenticationSteps {
         assertThat(userDetails.getEmail()).isEqualToIgnoringCase(accounts.getCredentials().getEmail());
     }
 
-    @Then("^He (.*) following user with username (.*)$")
+    @Then("^the user (.*) following user with username (.*)$")
     public void profileVerification(String status, String username) {
         Profile__1 profileDetails = profileAPI.getProfile(username.toLowerCase()).getProfile();
         assertThat(Serenity.sessionVariableCalled("GetProfileResponseCode").toString()).isEqualToIgnoringCase("200");
@@ -103,7 +103,7 @@ public class AuthenticationSteps {
         }
     }
 
-    @Then("^He decides and acts accordingly to (.*) user, (.*)$")
+    @Then("^the user decides to (.*) user with username (.*)$")
     public void followProfile(String status, String username) {
         if(status.equalsIgnoreCase("follow")){
             profileAPI.followProfile(username.toLowerCase());

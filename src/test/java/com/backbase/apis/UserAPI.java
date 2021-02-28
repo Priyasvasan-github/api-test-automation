@@ -14,8 +14,8 @@ import static net.serenitybdd.rest.SerenityRest.given;
 public class UserAPI extends BasePage {
 
     /**
-     * Get current user usin access token
-     * @return
+     * Get current user using access token
+     * @return User
      */
     @Step
     public User getCurrentUser(){
@@ -50,8 +50,8 @@ public class UserAPI extends BasePage {
 
     /**
      * Contract validation for user response
-     * @param response
-     * @return
+     * @param response the API response
+     * @return Validation
      */
 
     private User getUsersAsList(String response){

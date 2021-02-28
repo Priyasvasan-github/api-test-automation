@@ -15,8 +15,8 @@ public class ProfileAPI extends BasePage {
 
     /**
      * get a profile using userName
-     * @param username
-     * @return
+     * @param username The user name
+     * @return Profile
      */
     @Step
     public Profile getProfile(String username){
@@ -34,8 +34,8 @@ public class ProfileAPI extends BasePage {
 
     /**
      * Follow profile of another user
-     * @param username
-     * @return
+     * @param username The user name
+     * @return Profile
      */
     @Step
     public Profile followProfile(String username){
@@ -53,8 +53,8 @@ public class ProfileAPI extends BasePage {
 
     /**
      * Un-follow profile of following user
-     * @param username
-     * @return
+     * @param username The user name
+     * @return Profile
      */
     @Step
     public Profile unFollowProfile(String username){
@@ -72,8 +72,8 @@ public class ProfileAPI extends BasePage {
 
     /**
      * Contract validation of a profile
-     * @param response
-     * @return
+     * @param response the API response
+     * @return Profile
      */
     private Profile getProfileDetails(String response){
         try {

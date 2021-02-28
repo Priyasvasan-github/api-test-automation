@@ -39,9 +39,9 @@ public class AuthenticationAPI extends BasePage {
 
     /**
      * Register a user using below parameters
-     * @param email
-     * @param password
-     * @param username
+     * @param email The user emailId
+     * @param password The user password
+     * @param username The user name
      */
     @Step
     public void registerAUser(String email,String password,String username){
@@ -67,9 +67,9 @@ public class AuthenticationAPI extends BasePage {
 
     /**
      * Request body creation for login request using required parameters
-     * @param email
-     * @param password
-     * @return
+     * @param email The user emailId
+     * @param password The user password
+     * @return Login
      */
     public String userLoginMessage(String email, String password){
         JSONObject json = new JSONObject();
@@ -84,10 +84,10 @@ public class AuthenticationAPI extends BasePage {
 
     /**
      * Request body creation for Register request using required parameters
-     * @param email
-     * @param password
-     * @param username
-     * @return
+     * @param email The user emailId
+     * @param password The user password
+     * @param username The user name
+     * @return Register
      */
     public String registerMessage(String email, String password,String username){
         JSONObject json = new JSONObject();
@@ -125,8 +125,8 @@ public class AuthenticationAPI extends BasePage {
     /**
      * Use javax.xml.bind.DatatypeConverter class in JDK to convert byte array
      * to a hexadecimal string. Note that this generates hexadecimal in lower case.
-     * @param hash
-     * @return
+     * @param hash Current dateTime
+     * @return The hash of current dateTime
      */
     private static String  bytesToHex(byte[] hash) {
         return DatatypeConverter.printHexBinary(hash).toLowerCase();

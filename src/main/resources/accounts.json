@@ -1,30 +1,20 @@
 [
   {
     "id": "registered",
-    "email": "test1@priya.com",
-    "username": "priyavasan1",
-    "password": "PriyaTest"
-
+    "email": "sripriyavasan@gmail.com",
+    "username": "sripriyasrinivasan",
+    "password": "SripriyaTest"
   },
   {
     "id": "valid",
     "email": "john@john.josahnx",
     "username": "validName",
     "password": "johnjohnx"
-
   },
   {
     "id": "anonymous",
     "email": "john@john.johnx",
     "username": "superUser",
     "password": "Test2011"
-
-  },
-  {
-    "id": "All Content",
-    "email": "john@john.johnx",
-    "username": "",
-    "password": ""
-
   }
 ]

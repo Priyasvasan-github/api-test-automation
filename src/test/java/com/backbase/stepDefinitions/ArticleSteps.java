@@ -15,7 +15,7 @@ public class ArticleSteps {
     @Steps
     ArticlesAPI articlesAPI;
 
-    @When("^he create an article with valid details (.*),(.*),(.*),(.*)$")
+    @When("^the user creates an article with valid details (.*),(.*),(.*),(.*)$")
     public void createArticle(String title, String description,String body,String tags) {
         articlesAPI.createArticle(title,description,body,tags);
     }
@@ -61,7 +61,7 @@ public class ArticleSteps {
         assertThat(articleRetrieved.getAuthor().getUsername()).isEqualToIgnoringCase(Serenity.sessionVariableCalled("username"));
     }
 
-    @When("^he update an article with (.*) to new value (.*)$")
+    @When("^the user updates the article with (.*) to new value (.*)$")
     public void updateArticle(String updateField,String updateValue) {
         articlesAPI.updateArticle(updateField,updateValue,GetTestProperties.getValue("latestSlug"));
     }
